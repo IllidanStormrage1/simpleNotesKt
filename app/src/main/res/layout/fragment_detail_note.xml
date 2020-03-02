@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="?attr/myBackgroundColor"
     tools:context=".presentation.ui.fragment.detail.DetailNoteFragment">
 
@@ -11,10 +11,6 @@
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab"
-        app:borderWidth="0dp"
-        app:fabSize="auto"
-        app:rippleColor="?attr/mySrcTint"
-        app:tint="?attr/mySrcTint"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
@@ -23,7 +19,11 @@
         android:clickable="true"
         android:elevation="6dp"
         android:focusable="true"
-        android:src="@drawable/ic_edit_black_24dp" />
+        android:src="@drawable/ic_edit_black_24dp"
+        app:borderWidth="0dp"
+        app:fabSize="auto"
+        app:rippleColor="?attr/mySrcTint"
+        app:tint="?attr/mySrcTint" />
 
 
 </FrameLayout>
