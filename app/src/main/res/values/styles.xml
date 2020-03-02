@@ -1,0 +1,40 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <item name="name">light</item>
+
+        <item name="android:textColorSecondary">@color/black</item>
+        <item name="colorPrimary">@color/cornflower_blue</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/portage</item>
+        <item name="myPrimaryTextColor">@color/black</item>
+        <item name="mySecondaryTextColor">@android:color/secondary_text_light</item>
+        <item name="myBackgroundColor">@color/white</item>
+        <item name="myBackgroundCardColor">@color/alto</item>
+        <item name="mySrcTint">@color/white</item>
+        <item name="myPrimaryColor">@color/cornflower_blue</item>
+        <item name="android:statusBarColor">@color/white</item>
+        <item name="android:windowLightStatusBar">true</item>
+
+    </style>
+
+    <!-- Dark application theme. -->
+    <style name="AppTheme.dark" parent="Theme.MaterialComponents.NoActionBar">
+        <item name="name">dark</item>
+
+        <item name="android:textColorSecondary">@color/white</item>
+        <item name="colorAccent">@color/portage</item>
+        <item name="colorPrimary">@color/cornflower_blue</item>
+        <item name="myPrimaryTextColor">@color/white</item>
+        <item name="mySecondaryTextColor">@color/secondaryTextColor</item>
+        <item name="myBackgroundColor">@color/mine_shaft</item>
+        <item name="myBackgroundCardColor">@color/mine_shaft_2</item>
+        <item name="mySrcTint">@color/mine_shaft</item>
+        <item name="myPrimaryColor">@color/cornflower_blue</item>
+        <item name="actionBarItemBackground">@color/cornflower_blue</item>
+        <item name="android:statusBarColor">@color/mine_shaft</item>
+        <item name="android:windowLightStatusBar">false</item>
+    </style>
+
+</resources>

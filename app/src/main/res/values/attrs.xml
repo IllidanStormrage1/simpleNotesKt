@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--    text    -->
+    <attr name="myPrimaryTextColor" format="reference" />
+    <attr name="mySecondaryTextColor" format="reference" />
+
+    <!--    other colors    -->
+    <attr name="myPrimaryColor" format="reference" />
+    <attr name="myBackgroundColor" format="reference" />
+    <attr name="myBackgroundCardColor" format="reference" />
+    <attr name="mySrcTint" format="reference" />
+
+    <attr name="name" format="string"/>
+</resources>

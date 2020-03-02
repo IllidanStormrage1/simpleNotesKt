@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:startDestination="@id/mainFragment">
+    <fragment
+        android:id="@+id/mainFragment"
+        android:name="com.example.simplenotes.presentation.ui.fragment.main.MainFragment"
+        android:label="Notes"
+        tools:layout="@layout/main_fragment">
+        <action
+            android:id="@+id/action_mainFragment_to_detailNoteFragment"
+            app:destination="@id/detailNoteFragment"
+            app:popUpTo="@id/mainFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_createNoteFragment"
+            app:destination="@id/createNoteFragment"
+            app:popUpTo="@id/mainFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailNoteFragment"
+        android:name="com.example.simplenotes.presentation.ui.fragment.detail.DetailNoteFragment"
+        android:label="Edit note"
+        tools:layout="@layout/fragment_detail_note" />
+    <fragment
+        android:id="@+id/createNoteFragment"
+        android:name="com.example.simplenotes.presentation.ui.fragment.create.CreateNoteFragment"
+        android:label="Create note"
+        tools:layout="@layout/fragment_create_note" />
+</navigation>
