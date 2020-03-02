@@ -1,4 +1,4 @@
-package com.example.simplenotes.domain
+package com.example.simplenotes.domain.utils
 
 import android.content.SharedPreferences
 

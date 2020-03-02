@@ -9,6 +9,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.simplenotes.R
 import com.example.simplenotes.presentation.presenter.CreateNoteFragmentPresenter
 import kotlinx.android.synthetic.main.fragment_create_note.*
+import kotlinx.android.synthetic.main.input_block.*
 import moxy.MvpAppCompatFragment
 import moxy.presenter.InjectPresenter
 

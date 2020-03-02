@@ -1,56 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="?attr/myBackgroundColor"
     tools:context=".presentation.ui.fragment.detail.DetailNoteFragment">
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:fillViewport="true"
-        android:overScrollMode="never">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/titleEditText"
-                style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="start"
-                android:focusable="true"
-                android:hint="@string/title"
-                android:nestedScrollingEnabled="false"
-                android:scrollbars="none"
-                android:textColor="?attr/myPrimaryTextColor"
-                android:textSize="24sp" />
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/descriptionEditText"
-                style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="8dp"
-                android:autoLink="all"
-                android:focusable="true"
-                android:gravity="start|top"
-                android:hint="@string/text"
-                android:linksClickable="true"
-                android:scrollbars="none"
-                android:textColor="?attr/mySecondaryTextColor"
-                android:textSize="18sp" />
-        </LinearLayout>
-
-    </ScrollView>
+    <include layout="@layout/input_block" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab"
+        app:borderWidth="0dp"
+        app:fabSize="auto"
+        app:rippleColor="?attr/mySrcTint"
+        app:tint="?attr/mySrcTint"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
@@ -59,10 +23,7 @@
         android:clickable="true"
         android:elevation="6dp"
         android:focusable="true"
-        android:src="@drawable/ic_edit_black_24dp"
-        app:borderWidth="0dp"
-        app:fabSize="auto"
-        app:rippleColor="?attr/mySrcTint"
-        app:tint="?attr/mySrcTint" />
+        android:src="@drawable/ic_edit_black_24dp" />
+
 
 </FrameLayout>

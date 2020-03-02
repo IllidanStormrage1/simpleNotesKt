@@ -9,8 +9,10 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import com.example.simplenotes.R
 import com.example.simplenotes.domain.entity.NoteItem
+import com.example.simplenotes.domain.utils.Consts.ITEM
 import com.example.simplenotes.presentation.presenter.DetailNoteFragmentPresenter
 import kotlinx.android.synthetic.main.fragment_detail_note.*
+import kotlinx.android.synthetic.main.input_block.*
 import moxy.MvpAppCompatFragment
 import moxy.presenter.InjectPresenter
 
@@ -31,7 +33,7 @@ class DetailNoteFragment : MvpAppCompatFragment(), IDetailNoteFragmentView {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         arguments?.let {
-            setData(it.getSerializable("item") as NoteItem)
+            setData(it.getSerializable(ITEM) as NoteItem)
         }
         super.onViewCreated(view, savedInstanceState)
     }

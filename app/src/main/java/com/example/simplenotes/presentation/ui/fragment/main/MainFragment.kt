@@ -8,13 +8,13 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.simplenotes.R
-import com.example.simplenotes.domain.adapter.DataAdapter
 import com.example.simplenotes.domain.entity.NoteItem
+import com.example.simplenotes.domain.utils.Consts.ITEM
+import com.example.simplenotes.presentation.adapter.DataAdapter
 import com.example.simplenotes.presentation.presenter.MainFragmentPresenter
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.main_fragment.*
 import moxy.MvpAppCompatFragment
-
 import moxy.presenter.InjectPresenter
 
 
@@ -69,15 +69,20 @@ class MainFragment : MvpAppCompatFragment(),
 
     override fun navigateToDetail(item: NoteItem) {
         val args = Bundle()
-        args.putSerializable("item", item)
+        args.putSerializable(ITEM, item)
         navController.navigate(R.id.action_mainFragment_to_detailNoteFragment, args)
     }
 
     override fun showUndoShackBar() =
-        with(Snackbar.make(view!!, "Айтем удален", Snackbar.LENGTH_SHORT)) {
+        with(
+            Snackbar.make(
+                view!!,
+                resources.getString(R.string.item_deleted),
+                Snackbar.LENGTH_SHORT
+            )
+        ) {
             animationMode = Snackbar.ANIMATION_MODE_FADE
             show()
         }
-
 }
 

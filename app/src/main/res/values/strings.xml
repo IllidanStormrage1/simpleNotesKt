@@ -4,5 +4,6 @@
     <string name="anything_to_add">Anything to add ?</string>
     <string name="image">image</string>
     <string name="title">Title</string>
+    <string name="item_deleted">Запись удалена</string>
     <string name="text">Text</string>
 </resources>

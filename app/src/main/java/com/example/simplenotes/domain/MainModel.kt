@@ -1,7 +1,7 @@
 package com.example.simplenotes.domain
 
-import com.example.simplenotes.domain.adapter.DataAdapter
 import com.example.simplenotes.domain.entity.NoteItem
+import com.example.simplenotes.presentation.adapter.DataAdapter
 
 
 object MainModel {

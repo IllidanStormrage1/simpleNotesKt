@@ -1,4 +1,4 @@
-package com.example.simplenotes.domain.adapter
+package com.example.simplenotes.presentation.adapter
 
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView

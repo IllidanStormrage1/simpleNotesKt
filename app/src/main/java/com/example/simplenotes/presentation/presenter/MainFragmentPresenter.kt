@@ -2,11 +2,10 @@ package com.example.simplenotes.presentation.presenter
 
 import androidx.recyclerview.widget.ItemTouchHelper
 import com.example.simplenotes.domain.MainModel
-import com.example.simplenotes.domain.adapter.DataAdapter
-import com.example.simplenotes.domain.adapter.callback.OnTouchCallback
-import com.example.simplenotes.domain.adapter.ItemTouchHelperCallback
-import com.example.simplenotes.domain.adapter.callback.OnClickItemCallback
 import com.example.simplenotes.domain.entity.NoteItem
+import com.example.simplenotes.presentation.adapter.DataAdapter
+import com.example.simplenotes.presentation.adapter.ItemTouchHelperCallback
+import com.example.simplenotes.presentation.adapter.callback.OnTouchItem
 import com.example.simplenotes.presentation.ui.fragment.main.IMainFragmentView
 import moxy.InjectViewState
 import moxy.MvpPresenter
@@ -23,17 +22,14 @@ class MainFragmentPresenter : MvpPresenter<IMainFragmentView>() {
 
     private val adapter = DataAdapter().apply {
         attachData(MainModel.data)
-        callback = object :
-            OnClickItemCallback {
+        callback = object : OnTouchItem {
             override fun onItemClicked(item: NoteItem) {
-                viewState.navigateToDetail(item)
+                viewState.navigateToDetail(item = item)
             }
-        }
-        touchCallback = object :
-            OnTouchCallback {
+
             override fun onItemDismiss() {
-                viewState.checkItemCountRV()
                 viewState.showUndoShackBar()
+                viewState.checkItemCountRV()
             }
         }
     }

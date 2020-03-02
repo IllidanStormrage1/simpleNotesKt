@@ -1,4 +1,4 @@
-package com.example.simplenotes.domain.adapter
+package com.example.simplenotes.presentation.adapter
 
 import android.view.LayoutInflater
 import android.view.View
@@ -6,8 +6,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.simplenotes.R
-import com.example.simplenotes.domain.adapter.callback.OnClickItemCallback
-import com.example.simplenotes.domain.adapter.callback.OnTouchCallback
+import com.example.simplenotes.presentation.adapter.callback.OnTouchItem
 import com.example.simplenotes.domain.entity.NoteItem
 import java.util.*
 import kotlin.collections.ArrayList
@@ -15,8 +14,7 @@ import kotlin.collections.ArrayList
 class DataAdapter : RecyclerView.Adapter<DataAdapter.ViewHolder>() {
 
     private val array: ArrayList<NoteItem> = ArrayList()
-    lateinit var callback: OnClickItemCallback
-    lateinit var touchCallback: OnTouchCallback
+    lateinit var callback: OnTouchItem
 
     fun attachData(newArray: ArrayList<NoteItem>) {
         array.clear()
@@ -37,7 +35,7 @@ class DataAdapter : RecyclerView.Adapter<DataAdapter.ViewHolder>() {
     fun onItemDismiss(position: Int) {
         array.removeAt(position)
         notifyItemRemoved(position)
-        touchCallback.onItemDismiss()
+        callback.onItemDismiss()
     }
 
     fun editItem(oldItem: NoteItem, newItem: NoteItem) {
@@ -48,7 +46,7 @@ class DataAdapter : RecyclerView.Adapter<DataAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder =
         ViewHolder(
-            LayoutInflater.from(parent.context).inflate(R.layout.notes_item, parent, false)
+            LayoutInflater.from(parent.context).inflate(R.layout.note_item, parent, false)
         )
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) =
