@@ -29,8 +29,8 @@ class CreateNoteFragment : MvpAppCompatFragment(), ICreateNoteFragmentView {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         fab.setOnClickListener {
-            presenter.onBackPressed(
-                titleEditText.text.toString() to descriptionEditText.text.toString()
+            presenter.onFabPressed(
+                titleEditText.text.toString(), descriptionEditText.text.toString()
             )
         }
 
@@ -40,6 +40,5 @@ class CreateNoteFragment : MvpAppCompatFragment(), ICreateNoteFragmentView {
     override fun navigateToMainFragment() {
         navController.popBackStack()
     }
-
 
 }

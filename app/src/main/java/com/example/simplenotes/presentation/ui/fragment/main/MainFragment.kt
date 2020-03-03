@@ -34,9 +34,7 @@ class MainFragment : MvpAppCompatFragment(),
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        fab.setOnClickListener {
-            navController.navigate(R.id.action_mainFragment_to_createNoteFragment)
-        }
+        fab.setOnClickListener { navController.navigate(R.id.action_mainFragment_to_createNoteFragment) }
         presenter.itemTouchHelper.attachToRecyclerView(recyclerView)
         recyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) =
@@ -76,12 +74,12 @@ class MainFragment : MvpAppCompatFragment(),
     override fun showUndoShackBar() =
         with(
             Snackbar.make(
-                view!!,
+                fab,
                 resources.getString(R.string.item_deleted),
                 Snackbar.LENGTH_SHORT
             )
         ) {
-            animationMode = Snackbar.ANIMATION_MODE_FADE
+            animationMode = Snackbar.ANIMATION_MODE_SLIDE
             show()
         }
 }

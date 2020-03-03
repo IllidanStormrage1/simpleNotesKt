@@ -39,11 +39,11 @@ class DetailNoteFragment : MvpAppCompatFragment(), IDetailNoteFragmentView {
     }
 
     private fun setData(item: NoteItem) {
-        titleEditText.setText(item.title, TextView.BufferType.EDITABLE)
-        descriptionEditText.setText(item.text, TextView.BufferType.EDITABLE)
+        titleEditText.setText(item.title, TextView.BufferType.NORMAL)
+        descriptionEditText.setText(item.text, TextView.BufferType.NORMAL)
 
         fab.setOnClickListener {
-            presenter.onBackPressed(
+            presenter.onFabPressed(
                 item,
                 titleEditText.text.toString(),
                 descriptionEditText.text.toString()

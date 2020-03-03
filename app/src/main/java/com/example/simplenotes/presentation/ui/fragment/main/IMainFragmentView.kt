@@ -1,7 +1,7 @@
 package com.example.simplenotes.presentation.ui.fragment.main
 
-import com.example.simplenotes.presentation.adapter.DataAdapter
 import com.example.simplenotes.domain.entity.NoteItem
+import com.example.simplenotes.presentation.adapter.DataAdapter
 import moxy.MvpView
 import moxy.viewstate.strategy.alias.AddToEndSingle
 import moxy.viewstate.strategy.alias.Skip

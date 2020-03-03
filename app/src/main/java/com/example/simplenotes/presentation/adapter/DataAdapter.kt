@@ -6,8 +6,8 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.simplenotes.R
-import com.example.simplenotes.presentation.adapter.callback.OnTouchItem
 import com.example.simplenotes.domain.entity.NoteItem
+import com.example.simplenotes.presentation.adapter.callback.OnTouchItem
 import java.util.*
 import kotlin.collections.ArrayList
 

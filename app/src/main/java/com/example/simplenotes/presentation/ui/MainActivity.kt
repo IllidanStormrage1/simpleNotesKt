@@ -9,6 +9,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI
 import com.example.simplenotes.R
+import com.example.simplenotes.domain.utils.Consts.SP_DARK
+import com.example.simplenotes.domain.utils.Consts.SP_DARK_THEME
+import com.example.simplenotes.domain.utils.Consts.SP_THEME
 import com.example.simplenotes.domain.utils.apply
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -27,13 +30,13 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun isDarkThemeEnabled(): Boolean =
-        getSharedPreferences("theme", Context.MODE_PRIVATE).getBoolean("darkTheme", false)
+        getSharedPreferences(SP_THEME, Context.MODE_PRIVATE).getBoolean(SP_DARK_THEME, false)
 
     private fun changeTheme() {
         val outValue = TypedValue()
         theme.resolveAttribute(R.attr.name, outValue, true)
-        getSharedPreferences("theme", Context.MODE_PRIVATE).apply {
-            putBoolean("darkTheme", outValue.string.toString() != "dark")
+        getSharedPreferences(SP_THEME, Context.MODE_PRIVATE).apply {
+            putBoolean(SP_DARK_THEME, outValue.string.toString() != SP_DARK)
         }
         recreate()
     }
