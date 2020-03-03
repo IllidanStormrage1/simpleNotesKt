@@ -1,8 +1,8 @@
 package com.example.simplenotes.presentation.presenter
 
 import androidx.recyclerview.widget.ItemTouchHelper
-import com.example.simplenotes.domain.MainModel
 import com.example.simplenotes.domain.entity.NoteItem
+import com.example.simplenotes.domain.model.MainModel
 import com.example.simplenotes.presentation.adapter.DataAdapter
 import com.example.simplenotes.presentation.adapter.ItemTouchHelperCallback
 import com.example.simplenotes.presentation.adapter.callback.OnTouchItem
@@ -15,8 +15,10 @@ class MainFragmentPresenter : MvpPresenter<IMainFragmentView>() {
 
     override fun onFirstViewAttach() {
         MainModel.adapter = adapter
-        viewState.setAdapter(adapter)
-        viewState.checkItemCountRV()
+        with(viewState) {
+            setAdapter(adapter)
+            checkItemCountRV()
+        }
         super.onFirstViewAttach()
     }
 

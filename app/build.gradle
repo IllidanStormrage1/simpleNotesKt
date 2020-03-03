@@ -57,6 +57,7 @@ dependencies {
     // nav
     implementation "androidx.navigation:navigation-fragment-ktx:2.3.0-alpha02"
     implementation "androidx.navigation:navigation-ui-ktx:2.3.0-alpha02"
+    
 
 //    // test
 //    testImplementation 'junit:junit:4.12'

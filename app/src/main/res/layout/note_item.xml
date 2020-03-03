@@ -35,6 +35,7 @@
             android:maxLines="6"
             android:textColor="?attr/mySecondaryTextColor"
             android:textSize="12sp" />
+
     </LinearLayout>
 
 </com.google.android.material.card.MaterialCardView>
