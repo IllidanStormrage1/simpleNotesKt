@@ -40,7 +40,7 @@ class DataAdapter : RecyclerView.Adapter<DataAdapter.ViewHolder>() {
 
     fun editItem(oldItem: NoteItem, newItem: NoteItem) {
         val position = array.indexOf(oldItem)
-        array[position] = newItem
+        array[position] = oldItem.copy(title = newItem.title, text = newItem.text)
         notifyItemChanged(position)
     }
 
@@ -58,10 +58,12 @@ class DataAdapter : RecyclerView.Adapter<DataAdapter.ViewHolder>() {
 
         private val title: TextView = itemView.findViewById(R.id.itemTitle)
         private val text: TextView = itemView.findViewById(R.id.itemText)
+        private val timeCreated: TextView = itemView.findViewById(R.id.timeCreated)
 
         fun bind(item: NoteItem) {
             title.text = item.title
             text.text = item.text
+            timeCreated.text = item.timeCreated
             itemView.setOnClickListener {
                 callback.onItemClicked(item)
             }
