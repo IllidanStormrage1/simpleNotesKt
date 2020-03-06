@@ -40,7 +40,7 @@ class MainFragmentPresenter : MvpPresenter<IMainFragmentView>() {
                 viewState.navigateToDetail(item)
             }
 
-            override fun onItemDismiss(id: Int) {
+            override fun onItemDismiss(id: Long) {
                 viewState.showUndoShackBar()
                 viewState.checkItemCountRV()
                 MainModel.deleteData(id)

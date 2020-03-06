@@ -3,6 +3,7 @@ package com.example.simplenotes.presentation.presenter
 import com.example.simplenotes.domain.entity.NoteItem
 import com.example.simplenotes.domain.model.MainModel
 import com.example.simplenotes.domain.utils.Consts.PATTERN_DATE
+import com.example.simplenotes.domain.utils.generateUUID
 import com.example.simplenotes.presentation.ui.fragment.create.ICreateNoteFragmentView
 import moxy.InjectViewState
 import moxy.MvpPresenter
@@ -20,7 +21,8 @@ class CreateNoteFragmentPresenter : MvpPresenter<ICreateNoteFragmentView>() {
                 timeCreated = SimpleDateFormat(
                     PATTERN_DATE,
                     Locale.getDefault()
-                ).format(Date())
+                ).format(Date()),
+                id = generateUUID()
             )
             MainModel.adapter.insertItem(newItem)
             MainModel.createData(newItem)

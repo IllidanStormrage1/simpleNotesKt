@@ -39,9 +39,9 @@ class DataAdapter : RecyclerView.Adapter<DataAdapter.ViewHolder>() {
         callback.onItemDismiss(item.id)
     }
 
-    fun editItem(oldItem: NoteItem, newItem: NoteItem) {
+    fun editItem(oldItem: NoteItem, title: String, text: String) {
         val position = array.indexOf(oldItem)
-        array[position] = oldItem.copy(title = newItem.title, text = newItem.text)
+        array[position] = oldItem.copy(title = title, text = text)
         notifyItemChanged(position)
     }
 

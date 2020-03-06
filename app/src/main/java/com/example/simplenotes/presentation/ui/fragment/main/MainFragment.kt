@@ -1,7 +1,6 @@
 package com.example.simplenotes.presentation.ui.fragment.main
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -25,7 +24,6 @@ class MainFragment : MvpAppCompatFragment(),
     @InjectPresenter
     lateinit var presenter: MainFragmentPresenter
     private lateinit var navController: NavController
-    private val TAG = this.javaClass.simpleName
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -39,7 +37,6 @@ class MainFragment : MvpAppCompatFragment(),
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        Log.d(TAG, "viewCreated")
         fab.setOnClickListener { navController.navigate(R.id.action_mainFragment_to_createNoteFragment) }
         presenter.itemTouchHelper.attachToRecyclerView(recyclerView)
         recyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
@@ -76,7 +73,6 @@ class MainFragment : MvpAppCompatFragment(),
     }
 
     override fun showProgressBar() {
-        Log.d(TAG, "showProgressBar")
         progressCircular.visibility = View.VISIBLE
     }
 

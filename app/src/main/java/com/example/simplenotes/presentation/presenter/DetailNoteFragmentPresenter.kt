@@ -11,9 +11,8 @@ class DetailNoteFragmentPresenter : MvpPresenter<IDetailNoteFragmentView>() {
 
     fun onFabPressed(item: NoteItem, title: String, text: String) {
 
-        val newItem = NoteItem(title = title, text = text)
-        MainModel.adapter.editItem(item, newItem)
-        MainModel.updateData(item.id, newItem)
+        MainModel.adapter.editItem(item, title, text)
+        MainModel.updateData(item.id, title, text)
         viewState.navigateToMainFragment()
     }
 }

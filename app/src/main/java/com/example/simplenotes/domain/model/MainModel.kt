@@ -26,7 +26,7 @@ object MainModel {
             val cursor =
                 db.query(
                     TABLE_NAME,
-                    arrayOf(COLUMN_NOTE_TITLE, COLUMN_NOTE_TEXT, COLUMN_NOTE_DATE),
+                    arrayOf(COLUMN_NOTE_TITLE, COLUMN_NOTE_TEXT, COLUMN_NOTE_DATE, COLUMN_NOTE_ID),
                     null,
                     null,
                     null,
@@ -38,7 +38,8 @@ object MainModel {
                 val item = NoteItem(
                     title = cursor.getString(0),
                     text = cursor.getString(1),
-                    timeCreated = cursor.getString(2)
+                    timeCreated = cursor.getString(2),
+                    id = cursor.getLong(3)
                 )
                 cursor.moveToNext()
                 result += item
@@ -59,24 +60,22 @@ object MainModel {
                 put(COLUMN_NOTE_DATE, item.timeCreated)
             }
             db.insert(TABLE_NAME, null, values)
-            db.close()
         }
 
 
-    fun updateData(id: Int, item: NoteItem) {
+    fun updateData(id: Long, title: String, text: String) {
         CoroutineScope(Dispatchers.IO).launch {
             val db = dbHelper.writableDatabase
             val newValues = ContentValues().apply {
-                put(COLUMN_NOTE_ID, item.id)
-                put(COLUMN_NOTE_TITLE, item.title)
-                put(COLUMN_NOTE_TEXT, item.text)
+                put(COLUMN_NOTE_TITLE, title)
+                put(COLUMN_NOTE_TEXT, text)
             }
-            db.update(TABLE_NAME, newValues, "$COLUMN_NOTE_ID = $id", null);
+            db.update(TABLE_NAME, newValues, "$COLUMN_NOTE_ID = $id", null)
         }
 
     }
 
-    fun deleteData(id: Int) =
+    fun deleteData(id: Long) =
         CoroutineScope(Dispatchers.IO).launch {
             val db = dbHelper.writableDatabase
             db.delete(
@@ -84,7 +83,6 @@ object MainModel {
                 "id = ?",
                 arrayOf("$id")
             )
-            db.close()
         }
 
 }
