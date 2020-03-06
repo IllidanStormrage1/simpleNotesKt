@@ -7,6 +7,7 @@ import moxy.viewstate.strategy.alias.AddToEndSingle
 import moxy.viewstate.strategy.alias.Skip
 
 interface IMainFragmentView : MvpView {
+
     @AddToEndSingle
     fun checkItemCountRV()
 
