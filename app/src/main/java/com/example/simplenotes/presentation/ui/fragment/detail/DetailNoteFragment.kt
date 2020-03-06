@@ -9,7 +9,7 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import com.example.simplenotes.R
 import com.example.simplenotes.domain.entity.NoteItem
-import com.example.simplenotes.domain.utils.Consts.ITEM
+import com.example.simplenotes.domain.utils.Constants.ITEM
 import com.example.simplenotes.presentation.presenter.DetailNoteFragmentPresenter
 import kotlinx.android.synthetic.main.fragment_detail_note.*
 import kotlinx.android.synthetic.main.input_block.*

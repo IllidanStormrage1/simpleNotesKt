@@ -9,7 +9,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.simplenotes.R
 import com.example.simplenotes.domain.entity.NoteItem
-import com.example.simplenotes.domain.utils.Consts.ITEM
+import com.example.simplenotes.domain.utils.Constants.ITEM
 import com.example.simplenotes.presentation.adapter.DataAdapter
 import com.example.simplenotes.presentation.presenter.MainFragmentPresenter
 import com.google.android.material.snackbar.Snackbar

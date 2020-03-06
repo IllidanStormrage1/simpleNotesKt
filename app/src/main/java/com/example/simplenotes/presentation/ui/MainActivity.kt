@@ -9,9 +9,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI
 import com.example.simplenotes.R
-import com.example.simplenotes.domain.utils.Consts.SP_DARK
-import com.example.simplenotes.domain.utils.Consts.SP_DARK_THEME
-import com.example.simplenotes.domain.utils.Consts.SP_THEME
+import com.example.simplenotes.domain.utils.Constants.SP_DARK
+import com.example.simplenotes.domain.utils.Constants.SP_DARK_THEME
+import com.example.simplenotes.domain.utils.Constants.SP_THEME
 import com.example.simplenotes.domain.utils.apply
 import kotlinx.android.synthetic.main.activity_main.*
 
