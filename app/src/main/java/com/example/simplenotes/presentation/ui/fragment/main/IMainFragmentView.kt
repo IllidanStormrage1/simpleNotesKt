@@ -18,4 +18,10 @@ interface IMainFragmentView : MvpView {
 
     @Skip
     fun showUndoShackBar()
+
+    @Skip
+    fun hideProgressBar()
+
+    @Skip
+    fun showProgressBar()
 }

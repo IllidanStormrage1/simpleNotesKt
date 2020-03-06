@@ -9,11 +9,12 @@ class ReaderDbHelper(context: Context) :
     companion object {
         const val DATABASE_VERSION = 1
         const val DATABASE_NAME = "NoteReader.db"
-        private const val SQL_CREATE_ENTRIES =
-            "CREATE TABLE ${NoteReaderContract.NoteEntry.TABLE_NAME} (" +
-                    "${NoteReaderContract.NoteEntry.COLUMN_NAME_TITLE} TEXT," +
-                    "${NoteReaderContract.NoteEntry.COLUMN_NAME_TEXT} TEXT," +
-                    "${NoteReaderContract.NoteEntry.COLUMN_NAME_DATE} TEXT)"
+        private val SQL_CREATE_ENTRIES = """
+            CREATE TABLE ${NoteReaderContract.NoteEntry.TABLE_NAME}
+                (${NoteReaderContract.NoteEntry.COLUMN_NAME_TITLE} TEXT,
+                ${NoteReaderContract.NoteEntry.COLUMN_NAME_TEXT} TEXT,
+                ${NoteReaderContract.NoteEntry.COLUMN_NAME_DATE} TEXT)
+                """.trim()
 
         private const val SQL_DELETE_ENTRIES =
             "DROP TABLE IF EXISTS ${NoteReaderContract.NoteEntry.TABLE_NAME}"

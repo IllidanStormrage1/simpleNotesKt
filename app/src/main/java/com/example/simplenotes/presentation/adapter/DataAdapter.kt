@@ -18,7 +18,7 @@ class DataAdapter : RecyclerView.Adapter<DataAdapter.ViewHolder>() {
 
     fun attachData(newArray: ArrayList<NoteItem>) {
         array.clear()
-        array.addAll(newArray)
+        array += newArray
         notifyDataSetChanged()
     }
 
