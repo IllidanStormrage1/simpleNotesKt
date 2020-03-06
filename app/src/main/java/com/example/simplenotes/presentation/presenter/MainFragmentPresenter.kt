@@ -12,7 +12,6 @@ import com.example.simplenotes.presentation.ui.fragment.main.IMainFragmentView
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 import moxy.InjectViewState
 import moxy.MvpPresenter
 
@@ -27,18 +26,13 @@ class MainFragmentPresenter : MvpPresenter<IMainFragmentView>() {
 
         CoroutineScope(Dispatchers.Main).launch {
             viewState.showProgressBar()
-            MainModel.adapter.attachData(readDataFromDb())
-            viewState.hideProgressBar()
+            MainModel.adapter.attachData(MainModel.readData())
             viewState.checkItemCountRV()
+            viewState.hideProgressBar()
         }
 
         super.onFirstViewAttach()
     }
-
-    private suspend fun readDataFromDb() =
-        withContext(CoroutineScope(Dispatchers.IO).coroutineContext) {
-            MainModel.readData()
-        }
 
     private val adapter = DataAdapter().apply {
         callback = object : OnTouchItem {
@@ -46,9 +40,10 @@ class MainFragmentPresenter : MvpPresenter<IMainFragmentView>() {
                 viewState.navigateToDetail(item)
             }
 
-            override fun onItemDismiss() {
+            override fun onItemDismiss(id: Int) {
                 viewState.showUndoShackBar()
                 viewState.checkItemCountRV()
+                MainModel.deleteData(id)
             }
         }
     }

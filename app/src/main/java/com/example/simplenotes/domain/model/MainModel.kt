@@ -1,64 +1,90 @@
 package com.example.simplenotes.domain.model
 
 import android.content.ContentValues
-import com.example.simplenotes.data.NoteReaderContract.NoteEntry.COLUMN_NAME_DATE
-import com.example.simplenotes.data.NoteReaderContract.NoteEntry.COLUMN_NAME_TEXT
-import com.example.simplenotes.data.NoteReaderContract.NoteEntry.COLUMN_NAME_TITLE
+import com.example.simplenotes.data.NoteReaderContract.NoteEntry.COLUMN_NOTE_DATE
+import com.example.simplenotes.data.NoteReaderContract.NoteEntry.COLUMN_NOTE_ID
+import com.example.simplenotes.data.NoteReaderContract.NoteEntry.COLUMN_NOTE_TEXT
+import com.example.simplenotes.data.NoteReaderContract.NoteEntry.COLUMN_NOTE_TITLE
 import com.example.simplenotes.data.NoteReaderContract.NoteEntry.TABLE_NAME
 import com.example.simplenotes.data.ReaderDbHelper
 import com.example.simplenotes.domain.entity.NoteItem
 import com.example.simplenotes.presentation.adapter.DataAdapter
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 
 object MainModel {
     lateinit var adapter: DataAdapter
     lateinit var dbHelper: ReaderDbHelper
 
-    fun readData(): ArrayList<NoteItem> {
-        val result: ArrayList<NoteItem> = ArrayList()
-        val db = dbHelper.readableDatabase
-        val cursor =
-            db.query(
+    suspend fun readData(): ArrayList<NoteItem> =
+        withContext(CoroutineScope(Dispatchers.IO).coroutineContext) {
+            val result: ArrayList<NoteItem> = ArrayList()
+            val db = dbHelper.readableDatabase
+            val cursor =
+                db.query(
+                    TABLE_NAME,
+                    arrayOf(COLUMN_NOTE_TITLE, COLUMN_NOTE_TEXT, COLUMN_NOTE_DATE),
+                    null,
+                    null,
+                    null,
+                    null,
+                    null
+                )
+            cursor.moveToFirst()
+            while (!cursor.isAfterLast) {
+                val item = NoteItem(
+                    title = cursor.getString(0),
+                    text = cursor.getString(1),
+                    timeCreated = cursor.getString(2)
+                )
+                cursor.moveToNext()
+                result += item
+            }
+            cursor.close()
+            result.reverse()
+            result
+        }
+
+
+    fun createData(item: NoteItem) =
+        CoroutineScope(Dispatchers.IO).launch {
+            val db = dbHelper.writableDatabase
+            val values = ContentValues().apply {
+                put(COLUMN_NOTE_ID, item.id)
+                put(COLUMN_NOTE_TITLE, item.title)
+                put(COLUMN_NOTE_TEXT, item.text)
+                put(COLUMN_NOTE_DATE, item.timeCreated)
+            }
+            db.insert(TABLE_NAME, null, values)
+            db.close()
+        }
+
+
+    fun updateData(id: Int, item: NoteItem) {
+        CoroutineScope(Dispatchers.IO).launch {
+            val db = dbHelper.writableDatabase
+            val newValues = ContentValues().apply {
+                put(COLUMN_NOTE_ID, item.id)
+                put(COLUMN_NOTE_TITLE, item.title)
+                put(COLUMN_NOTE_TEXT, item.text)
+            }
+            db.update(TABLE_NAME, newValues, "$COLUMN_NOTE_ID = $id", null);
+        }
+
+    }
+
+    fun deleteData(id: Int) =
+        CoroutineScope(Dispatchers.IO).launch {
+            val db = dbHelper.writableDatabase
+            db.delete(
                 TABLE_NAME,
-                arrayOf(COLUMN_NAME_TITLE, COLUMN_NAME_TEXT, COLUMN_NAME_DATE),
-                null,
-                null,
-                null,
-                null,
-                null
+                "id = ?",
+                arrayOf("$id")
             )
-        cursor.moveToFirst()
-        while (!cursor.isAfterLast) {
-            val item = NoteItem(
-                title = cursor.getString(0),
-                text = cursor.getString(1),
-                timeCreated = cursor.getString(2)
-            )
-            cursor.moveToNext()
-            result += item
-        }
-        cursor.close()
-        return result
-    }
-
-    fun createData(item: NoteItem) {
-        val db = dbHelper.writableDatabase
-        val values = ContentValues().apply {
-            put(COLUMN_NAME_TITLE, item.title)
-            put(COLUMN_NAME_TEXT, item.text)
-            put(COLUMN_NAME_DATE, item.timeCreated)
+            db.close()
         }
 
-        db.insert(TABLE_NAME, null, values)
-    }
-
-
-    fun updateData() {
-
-
-    }
-
-    fun deleteData() {
-
-    }
 }

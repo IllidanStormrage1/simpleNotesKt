@@ -13,6 +13,7 @@ class DetailNoteFragmentPresenter : MvpPresenter<IDetailNoteFragmentView>() {
 
         val newItem = NoteItem(title = title, text = text)
         MainModel.adapter.editItem(item, newItem)
+        MainModel.updateData(item.id, newItem)
         viewState.navigateToMainFragment()
     }
 }

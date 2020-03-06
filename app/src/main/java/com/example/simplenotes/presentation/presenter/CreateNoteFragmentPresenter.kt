@@ -13,7 +13,7 @@ import java.util.*
 class CreateNoteFragmentPresenter : MvpPresenter<ICreateNoteFragmentView>() {
 
     fun onFabPressed(title: String, text: String) {
-        if (title.isNotBlank() || text.isNotBlank()) {
+        if (title.isNotBlank() or text.isNotBlank()) {
             val newItem = NoteItem(
                 title = title,
                 text = text,
@@ -23,6 +23,7 @@ class CreateNoteFragmentPresenter : MvpPresenter<ICreateNoteFragmentView>() {
                 ).format(Date())
             )
             MainModel.adapter.insertItem(newItem)
+            MainModel.createData(newItem)
         }
         viewState.navigateToMainFragment()
     }

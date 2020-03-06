@@ -33,9 +33,10 @@ class DataAdapter : RecyclerView.Adapter<DataAdapter.ViewHolder>() {
     }
 
     fun onItemDismiss(position: Int) {
-        array.removeAt(position)
+        val item = array[position]
+        array -= item
         notifyItemRemoved(position)
-        callback.onItemDismiss()
+        callback.onItemDismiss(item.id)
     }
 
     fun editItem(oldItem: NoteItem, newItem: NoteItem) {
