@@ -7,5 +7,4 @@ interface ICreateNoteFragmentView : MvpView {
 
     @Skip
     fun navigateToMainFragment()
-
 }
