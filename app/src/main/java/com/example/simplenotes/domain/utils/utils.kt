@@ -6,13 +6,13 @@ import android.content.SharedPreferences
 import android.view.inputmethod.InputMethodManager
 import java.util.*
 
-internal inline fun SharedPreferences.apply(action: SharedPreferences.Editor.() -> Unit) =
+inline fun SharedPreferences.apply(action: SharedPreferences.Editor.() -> Unit) =
     with(this.edit()) {
         action(this)
         this.apply()
     }
 
-internal fun generateUUID() = with(UUID.randomUUID()) {
+fun generateUUID() = with(UUID.randomUUID()) {
     toString().replace("-", "").hashCode().toLong()
 }
 
