@@ -6,6 +6,6 @@ import java.io.Serializable
 data class NoteItem(
     val title: String?,
     val text: String?,
-    val timeCreated: String? = null,
+    val timeCreated: String,
     val id: Long
 ) : Serializable
