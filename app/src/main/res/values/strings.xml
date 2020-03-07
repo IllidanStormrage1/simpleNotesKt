@@ -2,8 +2,8 @@
     <string name="app_name">SimpleNotes</string>
     <string name="notes">Notes</string>
     <string name="anything_to_add">Anything to add ?</string>
-    <string name="image">image</string>
+    <string name="image">image no notes</string>
     <string name="title">Title</string>
-    <string name="item_deleted">Запись удалена</string>
+    <string name="item_deleted">Successfully deleted</string>
     <string name="text">Text</string>
 </resources>

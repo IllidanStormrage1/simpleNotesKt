@@ -1,14 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimaryDark">#00574B</color>
-
+    <color name="colorPrimaryDark">#6C63FF</color>
     <color name="cornflower_blue">#6C63FF</color>
     <color name="portage">#A491FF</color>
     <color name="white">@android:color/white</color>
     <color name="black">@android:color/black</color>
     <color name="alto">#EEEEEE</color>
     <color name="secondaryTextColor">@android:color/darker_gray</color>
-
     <color name="mine_shaft">#212121</color>
     <color name="mine_shaft_2">#303030</color>
 </resources>

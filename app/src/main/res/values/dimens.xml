@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="primaryTextSize">24sp</dimen>
+    <dimen name="secondaryTextSize">18sp</dimen>
+    <dimen name="fabMargin">16dp</dimen>
+    <dimen name="toolbarElevation">0dp</dimen>
+    <dimen name="fabElevation">6dp</dimen>
+</resources>

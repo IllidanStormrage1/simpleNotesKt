@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="top"
         android:background="?attr/myBackgroundColor"
-        android:elevation="0dp"
+        android:elevation="@dimen/toolbarElevation"
         app:title="@string/notes" />
 
     <fragment
