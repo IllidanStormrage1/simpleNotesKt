@@ -4,8 +4,8 @@ import java.io.Serializable
 
 
 data class NoteItem(
-    val title: String,
-    val text: String,
+    val title: String?,
+    val text: String?,
     val timeCreated: String? = null,
     val id: Long
 ) : Serializable

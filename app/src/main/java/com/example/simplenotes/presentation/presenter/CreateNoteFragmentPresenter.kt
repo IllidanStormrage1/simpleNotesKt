@@ -14,19 +14,20 @@ import java.util.*
 class CreateNoteFragmentPresenter : MvpPresenter<ICreateNoteFragmentView>() {
 
     fun onFabPressed(title: String, text: String) {
-        if (title.isNotBlank() or text.isNotBlank()) {
-            val newItem = NoteItem(
-                title = title,
-                text = text,
-                timeCreated = SimpleDateFormat(
-                    PATTERN_DATE,
-                    Locale.getDefault()
-                ).format(Date()),
-                id = generateUUID()
-            )
-            MainModel.adapter.insertItem(newItem)
-            MainModel.createData(newItem)
-        }
+        val timeCreated = SimpleDateFormat(
+            PATTERN_DATE,
+            Locale.getDefault()
+        ).format(Date())
+        val id = generateUUID()
+        val item: NoteItem = createNoteItem(title, text, timeCreated, id)
+        MainModel.adapter.insertItem(item)
+        MainModel.createData(item)
         viewState.navigateToMainFragment()
+    }
+
+    private fun createNoteItem(title: String, text: String, timeCreated: String, id: Long) = when {
+        title.isBlank() -> NoteItem(null, text, timeCreated, id)
+        text.isBlank() -> NoteItem(title, null, timeCreated, id)
+        else -> NoteItem(title, text, timeCreated, id)
     }
 }

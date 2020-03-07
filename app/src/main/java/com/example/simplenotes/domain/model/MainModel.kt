@@ -45,7 +45,6 @@ object MainModel {
                 result += item
             }
             cursor.close()
-            result.reverse()
             result
         }
 
