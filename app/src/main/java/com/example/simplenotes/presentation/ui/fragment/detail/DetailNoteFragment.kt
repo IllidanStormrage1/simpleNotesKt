@@ -1,5 +1,6 @@
 package com.example.simplenotes.presentation.ui.fragment.detail
 
+import android.app.Activity
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,6 +11,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.simplenotes.R
 import com.example.simplenotes.domain.entity.NoteItem
 import com.example.simplenotes.domain.utils.Constants.ITEM
+import com.example.simplenotes.domain.utils.hideKeyboard
 import com.example.simplenotes.presentation.presenter.DetailNoteFragmentPresenter
 import kotlinx.android.synthetic.main.fragment_detail_note.*
 import moxy.MvpAppCompatFragment
@@ -51,6 +53,7 @@ class DetailNoteFragment : MvpAppCompatFragment(), IDetailNoteFragmentView {
     }
 
     override fun navigateToMainFragment() {
+        hideKeyboard(activity as Activity)
         navController.popBackStack()
     }
 }

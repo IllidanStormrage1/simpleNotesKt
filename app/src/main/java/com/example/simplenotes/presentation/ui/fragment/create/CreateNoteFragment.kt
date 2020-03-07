@@ -1,5 +1,6 @@
 package com.example.simplenotes.presentation.ui.fragment.create
 
+import android.app.Activity
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -7,6 +8,7 @@ import android.view.ViewGroup
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import com.example.simplenotes.R
+import com.example.simplenotes.domain.utils.hideKeyboard
 import com.example.simplenotes.presentation.presenter.CreateNoteFragmentPresenter
 import kotlinx.android.synthetic.main.fragment_detail_note.*
 import moxy.MvpAppCompatFragment
@@ -37,6 +39,7 @@ class CreateNoteFragment : MvpAppCompatFragment(), ICreateNoteFragmentView {
     }
 
     override fun navigateToMainFragment() {
+        hideKeyboard(activity as Activity)
         navController.popBackStack()
     }
 
