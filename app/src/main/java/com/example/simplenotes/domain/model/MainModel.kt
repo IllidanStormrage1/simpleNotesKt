@@ -13,11 +13,14 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import java.util.*
+import kotlin.collections.ArrayList
 
 
 object MainModel {
     lateinit var adapter: DataAdapter
     lateinit var dbHelper: ReaderDbHelper
+    private val bufferedItems: Stack<NoteItem> = Stack()
 
     suspend fun readData(): ArrayList<NoteItem> =
         withContext(CoroutineScope(Dispatchers.IO).coroutineContext) {
@@ -84,4 +87,7 @@ object MainModel {
             )
         }
 
+    fun addInStack(item: NoteItem) = bufferedItems.add(item)
+
+    fun returnItemFromStack(): NoteItem = bufferedItems.pop()
 }

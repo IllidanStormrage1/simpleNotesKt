@@ -6,4 +6,5 @@
     <string name="title">Title</string>
     <string name="item_deleted">Successfully deleted</string>
     <string name="text">Text</string>
+    <string name="undo">undo</string>
 </resources>

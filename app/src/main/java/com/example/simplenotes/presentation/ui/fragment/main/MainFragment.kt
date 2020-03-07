@@ -88,10 +88,11 @@ class MainFragment : MvpAppCompatFragment(),
             Snackbar.make(
                 fab,
                 resources.getString(R.string.item_deleted),
-                Snackbar.LENGTH_SHORT
+                Snackbar.LENGTH_LONG
             )
         ) {
             animationMode = Snackbar.ANIMATION_MODE_SLIDE
+            setAction(getString(R.string.undo), presenter.undoCallback)
             show()
         }
 }

@@ -1,6 +1,7 @@
 package com.example.simplenotes.presentation.presenter
 
 import android.content.Context
+import android.view.View
 import androidx.recyclerview.widget.ItemTouchHelper
 import com.example.simplenotes.data.ReaderDbHelper
 import com.example.simplenotes.domain.entity.NoteItem
@@ -40,12 +41,20 @@ class MainFragmentPresenter : MvpPresenter<IMainFragmentView>() {
                 viewState.navigateToDetail(item)
             }
 
-            override fun onItemDismiss(id: Long) {
+            override fun onItemDismiss(item: NoteItem) {
                 viewState.showUndoShackBar()
                 viewState.checkItemCountRV()
-                MainModel.deleteData(id)
+                MainModel.deleteData(item.id)
+                MainModel.addInStack(item)
             }
         }
+    }
+
+    val undoCallback = View.OnClickListener {
+        val item = MainModel.returnItemFromStack()
+        MainModel.createData(item)
+        MainModel.adapter.insertItem(item)
+        viewState.checkItemCountRV()
     }
 
     internal val itemTouchHelper = ItemTouchHelper(ItemTouchHelperCallback(adapter))
