@@ -7,7 +7,7 @@
         android:id="@+id/mainFragment"
         android:name="com.example.simplenotes.presentation.ui.fragment.main.MainFragment"
         android:label="Notes"
-        tools:layout="@layout/main_fragment">
+        tools:layout="@layout/fragment_main">
         <action
             android:id="@+id/action_mainFragment_to_detailNoteFragment"
             app:destination="@id/detailNoteFragment"
@@ -26,5 +26,5 @@
         android:id="@+id/createNoteFragment"
         android:name="com.example.simplenotes.presentation.ui.fragment.create.CreateNoteFragment"
         android:label="Create note"
-        tools:layout="@layout/fragment_create_note" />
+        tools:layout="@layout/fragment_detail_note" />
 </navigation>

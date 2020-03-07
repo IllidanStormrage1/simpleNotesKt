@@ -13,7 +13,7 @@ import com.example.simplenotes.domain.utils.Constants.ITEM
 import com.example.simplenotes.presentation.adapter.DataAdapter
 import com.example.simplenotes.presentation.presenter.MainFragmentPresenter
 import com.google.android.material.snackbar.Snackbar
-import kotlinx.android.synthetic.main.main_fragment.*
+import kotlinx.android.synthetic.main.fragment_main.*
 import moxy.MvpAppCompatFragment
 import moxy.presenter.InjectPresenter
 
@@ -33,7 +33,7 @@ class MainFragment : MvpAppCompatFragment(),
         context?.let {
             presenter.viewContext = it
         }
-        return inflater.inflate(R.layout.main_fragment, container, false)
+        return inflater.inflate(R.layout.fragment_main, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
