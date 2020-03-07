@@ -22,3 +22,4 @@ This is not supposed to be a production scale application, it is meant to demons
 * Edit, delete, drag and drop records as you like.
 * Dark and light theme.
 * Swipe, drag and drop.
+* Ability to return a deleted item.
