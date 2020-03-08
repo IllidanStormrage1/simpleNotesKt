@@ -42,21 +42,21 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation 'androidx.appcompat:appcompat:1.1.0'
     implementation 'androidx.core:core-ktx:1.2.0'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
 
     // ui
     implementation 'com.google.android.material:material:1.2.0-alpha05'
     implementation 'com.android.support:recyclerview-v7:29.0.0'
 
     // mvp
-    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
-    kapt "com.github.moxy-community:moxy-compiler:2.1.1"
-    implementation "com.github.moxy-community:moxy:2.1.1"
-    implementation "com.github.moxy-community:moxy-androidx:2.1.1"
+    kapt "com.github.moxy-community:moxy-compiler:$moxy_version"
+    implementation "com.github.moxy-community:moxy:$moxy_version"
+    implementation "com.github.moxy-community:moxy-androidx:$moxy_version"
 
     // nav
     implementation "androidx.navigation:navigation-fragment-ktx:2.3.0-alpha02"
     implementation "androidx.navigation:navigation-ui-ktx:2.3.0-alpha02"
-    
+
     // test
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
