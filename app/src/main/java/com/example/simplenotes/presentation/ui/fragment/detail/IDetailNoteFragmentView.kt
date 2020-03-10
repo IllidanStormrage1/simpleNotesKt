@@ -4,7 +4,6 @@ import moxy.MvpView
 import moxy.viewstate.strategy.alias.Skip
 
 interface IDetailNoteFragmentView : MvpView {
-
     @Skip
     fun navigateToMainFragment()
 }
