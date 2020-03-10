@@ -57,5 +57,5 @@ class MainFragmentPresenter : MvpPresenter<IMainFragmentView>() {
         viewState.checkItemCountRV()
     }
 
-    internal val itemTouchHelper = ItemTouchHelper(ItemTouchHelperCallback(adapter))
+    val itemTouchHelper = ItemTouchHelper(ItemTouchHelperCallback(adapter))
 }
