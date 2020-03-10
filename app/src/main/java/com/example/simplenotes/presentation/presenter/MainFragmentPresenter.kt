@@ -31,7 +31,6 @@ class MainFragmentPresenter : MvpPresenter<IMainFragmentView>() {
             viewState.checkItemCountRV()
             viewState.hideProgressBar()
         }
-
         super.onFirstViewAttach()
     }
 
@@ -52,8 +51,8 @@ class MainFragmentPresenter : MvpPresenter<IMainFragmentView>() {
 
     val undoCallback = View.OnClickListener {
         val item = MainModel.returnItemFromStack()
-        MainModel.createData(item)
         MainModel.adapter.insertItem(item)
+        MainModel.createData(item)
         viewState.checkItemCountRV()
     }
 
