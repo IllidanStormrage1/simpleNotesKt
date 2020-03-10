@@ -9,7 +9,7 @@
     android:layout_marginBottom="6dp"
     app:cardBackgroundColor="?attr/myBackgroundCardColor"
     app:cardCornerRadius="4dp"
-    app:cardElevation="2dp"
+    app:cardElevation="@dimen/cardview_default_elevation"
     app:contentPadding="10dp">
 
     <LinearLayout
