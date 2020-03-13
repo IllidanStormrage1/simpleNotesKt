@@ -10,8 +10,7 @@ import moxy.MvpPresenter
 class DetailNoteFragmentPresenter : MvpPresenter<IDetailNoteFragmentView>() {
 
     fun onFabPressed(item: NoteItem, title: String, text: String) {
-        MainModel.adapter.editItem(item, title, text)
-        MainModel.updateData(item.id, title, text)
+        MainModel.updateData(item, title, text)
         viewState.navigateToMainFragment()
     }
 }

@@ -51,8 +51,12 @@ object MainModel {
             result
         }
 
+    fun createData(item: NoteItem) {
+        adapter.insertItem(item)
+        createDataInBase(item)
+    }
 
-    fun createData(item: NoteItem) =
+    private fun createDataInBase(item: NoteItem) =
         CoroutineScope(Dispatchers.IO).launch {
             val db = dbHelper.writableDatabase
             val values = ContentValues().apply {
@@ -64,8 +68,12 @@ object MainModel {
             db.insert(TABLE_NAME, null, values)
         }
 
+    fun updateData(item: NoteItem, title: String, text: String) {
+        adapter.editItem(item, title, text)
+        updateDataInBase(item.id, title, text)
+    }
 
-    fun updateData(id: Long, title: String, text: String) {
+    private fun updateDataInBase(id: Long, title: String, text: String) {
         CoroutineScope(Dispatchers.IO).launch {
             val db = dbHelper.writableDatabase
             val newValues = ContentValues().apply {

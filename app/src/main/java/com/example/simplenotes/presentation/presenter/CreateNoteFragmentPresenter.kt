@@ -21,7 +21,6 @@ class CreateNoteFragmentPresenter : MvpPresenter<ICreateNoteFragmentView>() {
             ).format(Date())
             val id = generateUUID()
             val item = NoteItem(title, text, timeCreated, id)
-            MainModel.adapter.insertItem(item)
             MainModel.createData(item)
         }
         viewState.navigateToMainFragment()
