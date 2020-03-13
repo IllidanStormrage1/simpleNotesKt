@@ -24,7 +24,7 @@ class DataAdapter : RecyclerView.Adapter<DataAdapter.ViewHolder>() {
 
     fun insertItem(item: NoteItem) {
         array += item
-        notifyItemInserted(0)
+        notifyItemInserted(array.lastIndex)
     }
 
     fun onItemMove(from: Int, to: Int) {
@@ -41,7 +41,9 @@ class DataAdapter : RecyclerView.Adapter<DataAdapter.ViewHolder>() {
 
     fun editItem(oldItem: NoteItem, title: String, text: String) {
         val position = array.indexOf(oldItem)
-        array[position] = oldItem.copy(title = title, text = text)
+        val item = array[position]
+        item.title = title
+        item.text = text
         notifyItemChanged(position)
     }
 
