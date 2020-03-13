@@ -24,8 +24,7 @@
             android:ellipsize="end"
             android:maxLines="2"
             android:textColor="?attr/myPrimaryTextColor"
-            android:textSize="16sp"
-            android:visibility="gone" />
+            android:textSize="16sp" />
 
         <TextView
             android:id="@+id/itemText"
@@ -35,8 +34,7 @@
             android:ellipsize="end"
             android:maxLines="6"
             android:textColor="?attr/mySecondaryTextColor"
-            android:textSize="12sp"
-            android:visibility="gone" />
+            android:textSize="12sp" />
 
         <TextView
             android:id="@+id/timeCreated"

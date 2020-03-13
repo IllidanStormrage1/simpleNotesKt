@@ -41,8 +41,8 @@ class MainFragmentPresenter : MvpPresenter<IMainFragmentView>() {
             }
 
             override fun onItemDismiss(item: NoteItem) {
-                viewState.showUndoShackBar()
                 viewState.checkItemCountRV()
+                viewState.showUndoShackBar()
                 MainModel.deleteData(item.id)
                 MainModel.addInStack(item)
             }

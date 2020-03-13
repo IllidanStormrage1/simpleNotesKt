@@ -20,21 +20,11 @@ class CreateNoteFragmentPresenter : MvpPresenter<ICreateNoteFragmentView>() {
                 Locale.getDefault()
             ).format(Date())
             val id = generateUUID()
-            val item: NoteItem = createNoteItem(title, text, timeCreated, id)
+            val item = NoteItem(title, text, timeCreated, id)
             MainModel.adapter.insertItem(item)
             MainModel.createData(item)
         }
         viewState.navigateToMainFragment()
     }
 
-    private fun createNoteItem(
-        title: String,
-        text: String,
-        timeCreated: String,
-        id: Long
-    ): NoteItem = when {
-        title.isBlank() -> NoteItem(null, text, timeCreated, id)
-        text.isBlank() -> NoteItem(title, null, timeCreated, id)
-        else -> NoteItem(title, text, timeCreated, id)
-    }
 }

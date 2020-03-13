@@ -64,14 +64,8 @@ class DataAdapter : RecyclerView.Adapter<DataAdapter.ViewHolder>() {
         private val timeCreated: TextView = itemView.findViewById(R.id.timeCreated)
 
         fun bind(item: NoteItem) {
-            item.title?.let {
-                title.visibility = View.VISIBLE
-                title.text = it
-            }
-            item.text?.let {
-                text.visibility = View.VISIBLE
-                text.text = it
-            }
+            title.text = item.title
+            text.text = item.text
             timeCreated.text = item.timeCreated
             itemView.setOnClickListener {
                 callback.onItemClicked(item)
