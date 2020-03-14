@@ -24,11 +24,12 @@ object MainModel {
         interactor.updateDataInBase(item.id, title, text)
     }
 
-    fun deleteData(id: Long) {
-        interactor.deleteData(id)
+    fun deleteData(item: NoteItem) {
+        interactor.deleteData(item.id)
+        addInStack(item)
     }
 
-    fun addInStack(item: NoteItem) = bufferedItems.add(item)
+    private fun addInStack(item: NoteItem) = bufferedItems.add(item)
 
     fun returnItemFromStack(): NoteItem = bufferedItems.pop()
 }
