@@ -3,6 +3,7 @@
     package="com.example.simplenotes">
 
     <application
+        android:name=".SimpleNotes"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"

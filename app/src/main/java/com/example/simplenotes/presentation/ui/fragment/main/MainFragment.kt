@@ -30,9 +30,6 @@ class MainFragment : MvpAppCompatFragment(),
         savedInstanceState: Bundle?
     ): View? {
         navController = findNavController()
-        context?.let {
-            presenter.viewContext = it
-        }
         return inflater.inflate(R.layout.fragment_main, container, false)
     }
 

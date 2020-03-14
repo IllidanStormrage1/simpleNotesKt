@@ -1,9 +1,7 @@
 package com.example.simplenotes.presentation.presenter
 
-import android.content.Context
 import android.view.View
 import androidx.recyclerview.widget.ItemTouchHelper
-import com.example.simplenotes.data.ReaderDbHelper
 import com.example.simplenotes.domain.entity.NoteItem
 import com.example.simplenotes.domain.model.MainModel
 import com.example.simplenotes.presentation.adapter.DataAdapter
@@ -18,12 +16,10 @@ import moxy.MvpPresenter
 
 @InjectViewState
 class MainFragmentPresenter : MvpPresenter<IMainFragmentView>() {
-    lateinit var viewContext: Context
 
     override fun onFirstViewAttach() {
         viewState.setAdapter(adapter)
         MainModel.adapter = adapter
-        MainModel.dbHelper = ReaderDbHelper(viewContext)
 
         CoroutineScope(Dispatchers.Main).launch {
             viewState.showProgressBar()
