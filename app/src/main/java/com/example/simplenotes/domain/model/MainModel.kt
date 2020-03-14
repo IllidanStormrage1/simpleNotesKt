@@ -10,7 +10,7 @@ object MainModel {
 
     lateinit var adapter: DataAdapter // todo удалить это нахер
     private val interactor = Interactor()
-    private val bufferedItems: Stack<NoteItem> = Stack()
+    private val bufferedItems: Stack<NoteItem> = Stack() // todo утекает блять
 
     fun createData(item: NoteItem) {
         adapter.insertItem(item)
