@@ -3,11 +3,11 @@ package com.example.simplenotes.presentation.adapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.simplenotes.R
 import com.example.simplenotes.domain.entity.NoteItem
 import com.example.simplenotes.presentation.adapter.callback.OnTouchItem
+import kotlinx.android.synthetic.main.note_item.view.*
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -57,19 +57,19 @@ class DataAdapter : RecyclerView.Adapter<DataAdapter.ViewHolder>() {
 
     override fun getItemCount(): Int = array.size
 
-    inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    override fun onViewAttachedToWindow(holder: ViewHolder) {
+        super.onViewAttachedToWindow(holder)
+        holder.itemView.setOnClickListener {
+            callback.onItemClicked(array[holder.adapterPosition])
+        }
+    }
 
-        private val title: TextView = itemView.findViewById(R.id.itemTitle)
-        private val text: TextView = itemView.findViewById(R.id.itemText)
-        private val timeCreated: TextView = itemView.findViewById(R.id.timeCreated)
+    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         fun bind(item: NoteItem) {
-            title.text = item.title
-            text.text = item.text
-            timeCreated.text = item.timeCreated
-            itemView.setOnClickListener {
-                callback.onItemClicked(item)
-            }
+            itemView.itemTitle.text = item.title
+            itemView.itemText.text = item.text
+            itemView.itemTimeCreated.text = item.timeCreated
         }
     }
 }
