@@ -2,6 +2,8 @@ package com.example.simplenotes.data
 
 import android.content.ContentValues
 import com.example.simplenotes.SimpleNotes
+import com.example.simplenotes.data.base.NoteReaderContract
+import com.example.simplenotes.data.base.ReaderDbHelper
 import com.example.simplenotes.domain.entity.NoteItem
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -11,7 +13,8 @@ import java.util.*
 
 class Interactor {
 
-    private val dbHelper: ReaderDbHelper = ReaderDbHelper(SimpleNotes.instance.applicationContext)
+    private val dbHelper: ReaderDbHelper =
+        ReaderDbHelper(SimpleNotes.instance.applicationContext)
 
     fun createDataInBase(item: NoteItem) =
         CoroutineScope(Dispatchers.IO).launch {

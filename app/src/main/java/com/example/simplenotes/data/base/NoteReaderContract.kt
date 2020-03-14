@@ -1,4 +1,4 @@
-package com.example.simplenotes.data
+package com.example.simplenotes.data.base
 
 import android.provider.BaseColumns
 

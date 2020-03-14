@@ -8,7 +8,7 @@ import java.util.*
 
 object MainModel {
 
-    lateinit var adapter: DataAdapter
+    lateinit var adapter: DataAdapter // todo удалить это нахер
     private val interactor = Interactor()
     private val bufferedItems: Stack<NoteItem> = Stack()
 

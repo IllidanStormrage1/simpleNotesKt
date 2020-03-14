@@ -1,16 +1,19 @@
-package com.example.simplenotes.data
+package com.example.simplenotes.data.base
 
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
-import android.provider.BaseColumns._ID
-import com.example.simplenotes.data.NoteReaderContract.NoteEntry.COLUMN_NOTE_DATE
-import com.example.simplenotes.data.NoteReaderContract.NoteEntry.COLUMN_NOTE_ID
-import com.example.simplenotes.data.NoteReaderContract.NoteEntry.COLUMN_NOTE_TEXT
-import com.example.simplenotes.data.NoteReaderContract.NoteEntry.COLUMN_NOTE_TITLE
+import com.example.simplenotes.data.base.NoteReaderContract.NoteEntry.COLUMN_NOTE_DATE
+import com.example.simplenotes.data.base.NoteReaderContract.NoteEntry.COLUMN_NOTE_ID
+import com.example.simplenotes.data.base.NoteReaderContract.NoteEntry.COLUMN_NOTE_TEXT
+import com.example.simplenotes.data.base.NoteReaderContract.NoteEntry.COLUMN_NOTE_TITLE
 
 class ReaderDbHelper(context: Context) :
-    SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION) {
+    SQLiteOpenHelper(
+        context,
+        DATABASE_NAME, null,
+        DATABASE_VERSION
+    ) {
     companion object {
         const val DATABASE_VERSION = 1
         const val DATABASE_NAME = "NoteReader.db"
