@@ -11,7 +11,7 @@ android {
     buildToolsVersion "29.0.2"
     defaultConfig {
         applicationId "com.example.simplenotes"
-        minSdkVersion 25
+        minSdkVersion 23
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"
@@ -54,8 +54,8 @@ dependencies {
     implementation "com.github.moxy-community:moxy-androidx:$moxy_version"
 
     // nav
-    implementation "androidx.navigation:navigation-fragment-ktx:2.3.0-alpha02"
-    implementation "androidx.navigation:navigation-ui-ktx:2.3.0-alpha02"
+    implementation "androidx.navigation:navigation-fragment-ktx:2.3.0-alpha03"
+    implementation "androidx.navigation:navigation-ui-ktx:2.3.0-alpha03"
 
     // test
     testImplementation 'junit:junit:4.12'
