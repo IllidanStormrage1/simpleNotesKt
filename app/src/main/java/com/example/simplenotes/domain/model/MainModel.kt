@@ -3,15 +3,14 @@ package com.example.simplenotes.domain.model
 import com.example.simplenotes.data.Interactor
 import com.example.simplenotes.domain.entity.NoteItem
 import com.example.simplenotes.presentation.adapter.DataAdapter
-import java.util.*
 
 
 object MainModel {
 
     lateinit var adapter: DataAdapter // todo удалить это нахер
     private val interactor = Interactor()
-    private val bufferedItems: Stack<NoteItem> = Stack() // todo утекает блять
-
+    var bufferedItem: NoteItem? = null
+    
     fun createData(item: NoteItem) {
         adapter.insertItem(item)
         interactor.createDataInBase(item)
@@ -26,10 +25,6 @@ object MainModel {
 
     fun deleteData(item: NoteItem) {
         interactor.deleteData(item.id)
-        addInStack(item)
+        bufferedItem = item
     }
-
-    private fun addInStack(item: NoteItem) = bufferedItems.add(item)
-
-    fun returnItemFromStack(): NoteItem = bufferedItems.pop()
 }

@@ -45,8 +45,9 @@ class MainFragmentPresenter : MvpPresenter<IMainFragmentView>() {
     }
 
     val undoCallback = View.OnClickListener {
-        val item = MainModel.returnItemFromStack()
-        MainModel.createData(item)
+        MainModel.bufferedItem?.let {
+            MainModel.createData(it)
+        }
         viewState.checkItemCountRV()
     }
 
