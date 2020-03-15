@@ -7,11 +7,11 @@ import com.example.simplenotes.presentation.adapter.DataAdapter
 
 object MainModel {
 
-    lateinit var adapter: DataAdapter // todo удалить это нахер
+    lateinit var adapter: DataAdapter // todo убрать это
     private val interactor = Interactor()
     var bufferedItem: NoteItem? = null
         private set
-    
+
     fun createData(item: NoteItem) {
         adapter.insertItem(item)
         interactor.createDataInBase(item)
