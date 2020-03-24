@@ -20,7 +20,7 @@ class Interactor {
     private val dbHelper: ReaderDbHelper =
         ReaderDbHelper(SimpleNotes.instance.applicationContext)
 
-    fun createDataInBase(item: NoteItem, position: Int = 0) =
+    fun createDataInBase(item: NoteItem, position: Int = 0) {
         CoroutineScope(Dispatchers.IO).launch {
             val db = dbHelper.writableDatabase
             val values = ContentValues().apply {
@@ -32,6 +32,7 @@ class Interactor {
             }
             db.insert(NoteReaderContract.NoteEntry.TABLE_NAME, null, values)
         }
+    }
 
     suspend fun readData(): MutableList<NoteItem> =
         withContext(CoroutineScope(Dispatchers.IO).coroutineContext) {
@@ -51,7 +52,7 @@ class Interactor {
                     null,
                     null,
                     null,
-                    COLUMN_NOTE_POSITION
+                    null
                 )
             cursor.moveToFirst()
             while (!cursor.isAfterLast) {
@@ -84,7 +85,7 @@ class Interactor {
         }
     }
 
-    fun deleteData(id: Long) =
+    fun deleteData(id: Long) {
         CoroutineScope(Dispatchers.IO).launch {
             val db = dbHelper.writableDatabase
             db.delete(
@@ -92,13 +93,6 @@ class Interactor {
                 "id = ?",
                 arrayOf("$id")
             )
-        }
-
-
-    fun swap(fromPosition: Int, toPosition: Int) {
-        CoroutineScope(Dispatchers.IO).launch {
-            val db = dbHelper.readableDatabase
-
         }
     }
 }
