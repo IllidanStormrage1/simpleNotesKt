@@ -82,11 +82,7 @@ class MainFragment : MvpAppCompatFragment(),
 
     override fun showUndoShackBar() =
         with(
-            Snackbar.make(
-                fab,
-                resources.getString(R.string.item_deleted),
-                Snackbar.LENGTH_LONG
-            )
+            Snackbar.make(fab, resources.getString(R.string.item_deleted), Snackbar.LENGTH_LONG)
         ) {
             animationMode = Snackbar.ANIMATION_MODE_SLIDE
             setAction(getString(R.string.undo), presenter.undoCallback)

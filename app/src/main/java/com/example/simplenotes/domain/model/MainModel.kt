@@ -7,7 +7,7 @@ import com.example.simplenotes.presentation.adapter.DataAdapter
 
 object MainModel {
 
-    lateinit var adapter: DataAdapter // todo убрать это
+    lateinit var adapter: DataAdapter
     private val interactor = Interactor()
     var bufferedItem: Pair<Int, NoteItem>? = null
         private set

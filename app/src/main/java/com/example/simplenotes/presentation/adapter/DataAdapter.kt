@@ -11,7 +11,7 @@ import com.example.simplenotes.presentation.adapter.callback.OnTouchItem
 import kotlinx.android.synthetic.main.note_item.view.*
 import java.util.*
 
-class DataAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class DataAdapter : RecyclerView.Adapter<DataAdapter.ViewHolder>() {
 
     private val list: MutableList<NoteItem> = mutableListOf()
     lateinit var callback: OnTouchItem
@@ -55,12 +55,12 @@ class DataAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
             LayoutInflater.from(parent.context).inflate(R.layout.note_item, parent, false)
         )
 
-    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) =
-        (holder as ViewHolder).bind(list[position])
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) =
+        holder.bind(list[position])
 
     override fun getItemCount(): Int = list.size
 
-    override fun onViewAttachedToWindow(holder: RecyclerView.ViewHolder) {
+    override fun onViewAttachedToWindow(holder: ViewHolder) {
         super.onViewAttachedToWindow(holder)
         holder.itemView.setOnClickListener {
             callback.onItemClicked(list[holder.adapterPosition])
