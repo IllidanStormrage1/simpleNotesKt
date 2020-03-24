@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
@@ -16,7 +16,9 @@
         <item name="myPrimaryColor">@color/cornflower_blue</item>
         <item name="android:statusBarColor">@color/alto</item>
         <item name="android:windowLightStatusBar">true</item>
-
+        <item name="android:navigationBarColor">@color/alto</item>
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+        <item name="android:windowLightNavigationBar" tools:targetApi="o_mr1">true</item>
     </style>
 
     <!-- Dark application theme. -->
@@ -35,6 +37,9 @@
         <item name="actionBarItemBackground">@color/cornflower_blue</item>
         <item name="android:statusBarColor">@color/mine_shaft</item>
         <item name="android:windowLightStatusBar">false</item>
+        <item name="android:windowLightNavigationBar" tools:targetApi="o_mr1">false</item>
+        <item name="android:navigationBarColor">@color/mine_shaft</item>
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
     </style>
 
 </resources>
