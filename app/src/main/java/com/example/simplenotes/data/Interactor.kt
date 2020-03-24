@@ -3,49 +3,55 @@ package com.example.simplenotes.data
 import android.content.ContentValues
 import com.example.simplenotes.SimpleNotes
 import com.example.simplenotes.data.base.NoteReaderContract
+import com.example.simplenotes.data.base.NoteReaderContract.NoteEntry.COLUMN_NOTE_DATE
+import com.example.simplenotes.data.base.NoteReaderContract.NoteEntry.COLUMN_NOTE_ID
+import com.example.simplenotes.data.base.NoteReaderContract.NoteEntry.COLUMN_NOTE_POSITION
+import com.example.simplenotes.data.base.NoteReaderContract.NoteEntry.COLUMN_NOTE_TEXT
+import com.example.simplenotes.data.base.NoteReaderContract.NoteEntry.COLUMN_NOTE_TITLE
 import com.example.simplenotes.data.base.ReaderDbHelper
 import com.example.simplenotes.domain.entity.NoteItem
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import java.util.*
 
 class Interactor {
 
     private val dbHelper: ReaderDbHelper =
         ReaderDbHelper(SimpleNotes.instance.applicationContext)
 
-    fun createDataInBase(item: NoteItem) =
+    fun createDataInBase(item: NoteItem, position: Int = 0) =
         CoroutineScope(Dispatchers.IO).launch {
             val db = dbHelper.writableDatabase
             val values = ContentValues().apply {
-                put(NoteReaderContract.NoteEntry.COLUMN_NOTE_ID, item.id)
-                put(NoteReaderContract.NoteEntry.COLUMN_NOTE_TITLE, item.title)
-                put(NoteReaderContract.NoteEntry.COLUMN_NOTE_TEXT, item.text)
-                put(NoteReaderContract.NoteEntry.COLUMN_NOTE_DATE, item.timeCreated)
+                put(COLUMN_NOTE_ID, item.id)
+                put(COLUMN_NOTE_TITLE, item.title)
+                put(COLUMN_NOTE_TEXT, item.text)
+                put(COLUMN_NOTE_POSITION, position)
+                put(COLUMN_NOTE_DATE, item.timeCreated)
             }
             db.insert(NoteReaderContract.NoteEntry.TABLE_NAME, null, values)
         }
 
-    suspend fun readData(): ArrayList<NoteItem> =
+    suspend fun readData(): MutableList<NoteItem> =
         withContext(CoroutineScope(Dispatchers.IO).coroutineContext) {
-            val result: ArrayList<NoteItem> = ArrayList()
+            val result: MutableList<NoteItem> = mutableListOf()
             val db = dbHelper.readableDatabase
             val cursor =
                 db.query(
                     NoteReaderContract.NoteEntry.TABLE_NAME,
                     arrayOf(
-                        NoteReaderContract.NoteEntry.COLUMN_NOTE_TITLE,
-                        NoteReaderContract.NoteEntry.COLUMN_NOTE_TEXT,
-                        NoteReaderContract.NoteEntry.COLUMN_NOTE_DATE,
-                        NoteReaderContract.NoteEntry.COLUMN_NOTE_ID
+                        COLUMN_NOTE_TITLE,
+                        COLUMN_NOTE_TEXT,
+                        COLUMN_NOTE_DATE,
+                        COLUMN_NOTE_ID,
+                        COLUMN_NOTE_POSITION
                     ),
                     null,
                     null,
                     null,
                     null,
-                    null
+                    COLUMN_NOTE_POSITION
                 )
             cursor.moveToFirst()
             while (!cursor.isAfterLast) {
@@ -66,13 +72,13 @@ class Interactor {
         CoroutineScope(Dispatchers.IO).launch {
             val db = dbHelper.writableDatabase
             val newValues = ContentValues().apply {
-                put(NoteReaderContract.NoteEntry.COLUMN_NOTE_TITLE, title)
-                put(NoteReaderContract.NoteEntry.COLUMN_NOTE_TEXT, text)
+                put(COLUMN_NOTE_TITLE, title)
+                put(COLUMN_NOTE_TEXT, text)
             }
             db.update(
                 NoteReaderContract.NoteEntry.TABLE_NAME,
                 newValues,
-                "${NoteReaderContract.NoteEntry.COLUMN_NOTE_ID} = $id",
+                "$COLUMN_NOTE_ID = $id",
                 null
             )
         }
@@ -87,4 +93,12 @@ class Interactor {
                 arrayOf("$id")
             )
         }
+
+
+    fun swap(fromPosition: Int, toPosition: Int) {
+        CoroutineScope(Dispatchers.IO).launch {
+            val db = dbHelper.readableDatabase
+
+        }
+    }
 }

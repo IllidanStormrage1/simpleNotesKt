@@ -9,12 +9,12 @@ object MainModel {
 
     lateinit var adapter: DataAdapter // todo убрать это
     private val interactor = Interactor()
-    var bufferedItem: NoteItem? = null
+    var bufferedItem: Pair<Int, NoteItem>? = null
         private set
 
-    fun createData(item: NoteItem) {
-        adapter.insertItem(item)
-        interactor.createDataInBase(item)
+    fun createData(item: NoteItem, position: Int = adapter.itemCount) {
+        adapter.insertItem(position = position, item = item)
+        interactor.createDataInBase(item = item, position = position)
     }
 
     suspend fun readData() = interactor.readData()
@@ -24,8 +24,12 @@ object MainModel {
         interactor.updateDataInBase(item.id, title, text)
     }
 
-    fun deleteData(item: NoteItem) {
+    fun deleteData(item: NoteItem, position: Int = 0) {
         interactor.deleteData(item.id)
-        bufferedItem = item
+        bufferedItem = position to item
+    }
+
+    fun swap(fromPosition: Int, toPosition: Int) {
+        adapter.swapItems(fromPosition, toPosition)
     }
 }

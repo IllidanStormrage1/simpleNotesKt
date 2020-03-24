@@ -5,6 +5,7 @@ import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 import com.example.simplenotes.data.base.NoteReaderContract.NoteEntry.COLUMN_NOTE_DATE
 import com.example.simplenotes.data.base.NoteReaderContract.NoteEntry.COLUMN_NOTE_ID
+import com.example.simplenotes.data.base.NoteReaderContract.NoteEntry.COLUMN_NOTE_POSITION
 import com.example.simplenotes.data.base.NoteReaderContract.NoteEntry.COLUMN_NOTE_TEXT
 import com.example.simplenotes.data.base.NoteReaderContract.NoteEntry.COLUMN_NOTE_TITLE
 
@@ -22,6 +23,7 @@ class ReaderDbHelper(context: Context) :
                 ($COLUMN_NOTE_ID INTEGER ,
                 $COLUMN_NOTE_TITLE TEXT,
                 $COLUMN_NOTE_TEXT TEXT,
+                $COLUMN_NOTE_POSITION INTEGER,
                 $COLUMN_NOTE_DATE TEXT)
                 """.trim()
 

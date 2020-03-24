@@ -6,45 +6,48 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.simplenotes.R
 import com.example.simplenotes.domain.entity.NoteItem
+import com.example.simplenotes.domain.utils.clearAndAddAll
 import com.example.simplenotes.presentation.adapter.callback.OnTouchItem
 import kotlinx.android.synthetic.main.note_item.view.*
 import java.util.*
-import kotlin.collections.ArrayList
 
-class DataAdapter : RecyclerView.Adapter<DataAdapter.ViewHolder>() {
+class DataAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
-    private val array: ArrayList<NoteItem> = ArrayList()
+    private val list: MutableList<NoteItem> = mutableListOf()
     lateinit var callback: OnTouchItem
 
-    fun attachData(newArray: ArrayList<NoteItem>) {
-        array.clear()
-        array += newArray
+    fun attachData(newArray: Collection<NoteItem>) {
+        list.clearAndAddAll(newArray)
         notifyDataSetChanged()
     }
 
-    fun insertItem(item: NoteItem) {
-        array += item
-        notifyItemInserted(array.lastIndex)
+    fun insertItem(item: NoteItem, position: Int) {
+        list.add(position, item)
+        notifyItemInserted(position)
     }
 
-    fun onItemMove(from: Int, to: Int) {
-        Collections.swap(array, from, to)
-        notifyItemMoved(from, to)
+    fun onItemMove(fromPosition: Int, toPosition: Int) {
+        notifyItemMoved(fromPosition, toPosition)
+        callback.onItemSwap(fromPosition, toPosition)
     }
 
     fun onItemDismiss(position: Int) {
-        val item = array[position]
-        array -= item
+        val item = list[position]
+        list.removeAt(position)
         notifyItemRemoved(position)
-        callback.onItemDismiss(item)
+        callback.onItemDismiss(item, position)
     }
 
     fun editItem(oldItem: NoteItem, title: String, text: String) {
-        val position = array.indexOf(oldItem)
-        val item = array[position]
+        val position = list.indexOf(oldItem)
+        val item = list[position]
         item.title = title
         item.text = text
         notifyItemChanged(position)
+    }
+
+    fun swapItems(fromPosition: Int, toPosition: Int) {
+        Collections.swap(list, fromPosition, toPosition)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder =
@@ -52,24 +55,24 @@ class DataAdapter : RecyclerView.Adapter<DataAdapter.ViewHolder>() {
             LayoutInflater.from(parent.context).inflate(R.layout.note_item, parent, false)
         )
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) =
-        holder.bind(array[position])
+    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) =
+        (holder as ViewHolder).bind(list[position])
 
-    override fun getItemCount(): Int = array.size
+    override fun getItemCount(): Int = list.size
 
-    override fun onViewAttachedToWindow(holder: ViewHolder) {
+    override fun onViewAttachedToWindow(holder: RecyclerView.ViewHolder) {
         super.onViewAttachedToWindow(holder)
         holder.itemView.setOnClickListener {
-            callback.onItemClicked(array[holder.adapterPosition])
+            callback.onItemClicked(list[holder.adapterPosition])
         }
     }
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-        fun bind(item: NoteItem) {
-            itemView.itemTitle.text = item.title
-            itemView.itemText.text = item.text
-            itemView.itemTimeCreated.text = item.timeCreated
+        fun bind(item: NoteItem) = with(itemView) {
+            itemTitle.text = item.title
+            itemText.text = item.text
+            itemTimeCreated.text = item.timeCreated
         }
     }
 }

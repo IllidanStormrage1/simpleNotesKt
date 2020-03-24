@@ -1,6 +1,5 @@
 package com.example.simplenotes.presentation.ui.fragment.create
 
-import android.app.Activity
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -39,7 +38,7 @@ class CreateNoteFragment : MvpAppCompatFragment(), ICreateNoteFragmentView {
     }
 
     override fun navigateToMainFragment() {
-        hideKeyboard(activity as Activity)
+        activity?.hideKeyboard()
         navController.popBackStack()
     }
 

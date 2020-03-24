@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimaryDark">#6C63FF</color>
     <color name="cornflower_blue">#6C63FF</color>
     <color name="portage">#A491FF</color>
     <color name="white">@android:color/white</color>

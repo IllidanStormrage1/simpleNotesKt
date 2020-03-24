@@ -7,6 +7,7 @@ object NoteReaderContract {
         const val TABLE_NAME = "entry"
         const val COLUMN_NOTE_ID = "id"
         const val COLUMN_NOTE_TITLE = "title"
+        const val COLUMN_NOTE_POSITION = "position"
         const val COLUMN_NOTE_TEXT = "text"
         const val COLUMN_NOTE_DATE = "date"
     }

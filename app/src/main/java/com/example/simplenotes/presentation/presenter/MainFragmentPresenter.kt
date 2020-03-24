@@ -36,17 +36,21 @@ class MainFragmentPresenter : MvpPresenter<IMainFragmentView>() {
                 viewState.navigateToDetail(item)
             }
 
-            override fun onItemDismiss(item: NoteItem) {
+            override fun onItemDismiss(item: NoteItem, position: Int) {
                 viewState.checkItemCountRV()
                 viewState.showUndoShackBar()
-                MainModel.deleteData(item)
+                MainModel.deleteData(item, position)
+            }
+
+            override fun onItemSwap(fromPosition: Int, toPosition: Int) {
+                MainModel.swap(fromPosition, toPosition)
             }
         }
     }
 
     val undoCallback = View.OnClickListener {
         MainModel.bufferedItem?.let {
-            MainModel.createData(it)
+            MainModel.createData(item = it.second, position = it.first)
         }
         viewState.checkItemCountRV()
     }
