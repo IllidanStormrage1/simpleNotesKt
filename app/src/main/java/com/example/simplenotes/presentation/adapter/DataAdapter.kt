@@ -51,9 +51,10 @@ class DataAdapter : RecyclerView.Adapter<DataAdapter.ViewHolder>() {
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder =
-        ViewHolder(
-            LayoutInflater.from(parent.context).inflate(R.layout.note_item, parent, false)
-        )
+        with(LayoutInflater.from(parent.context)) {
+            ViewHolder(inflate(R.layout.note_item, parent, false))
+        }
+
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) =
         holder.bind(list[position])
@@ -65,6 +66,11 @@ class DataAdapter : RecyclerView.Adapter<DataAdapter.ViewHolder>() {
         holder.itemView.setOnClickListener {
             callback.onItemClicked(list[holder.adapterPosition])
         }
+    }
+
+    override fun onViewDetachedFromWindow(holder: ViewHolder) {
+        super.onViewDetachedFromWindow(holder)
+        holder.itemView.setOnClickListener(null)
     }
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
