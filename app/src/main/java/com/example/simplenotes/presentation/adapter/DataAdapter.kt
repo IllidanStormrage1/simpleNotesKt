@@ -61,6 +61,8 @@ class DataAdapter : RecyclerView.Adapter<DataAdapter.ViewHolder>() {
 
     override fun getItemCount(): Int = list.size
 
+    override fun getItemId(position: Int): Long = list[position].id
+
     override fun onViewAttachedToWindow(holder: ViewHolder) {
         super.onViewAttachedToWindow(holder)
         holder.itemView.setOnClickListener {

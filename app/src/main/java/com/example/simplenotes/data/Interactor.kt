@@ -52,7 +52,7 @@ class Interactor {
                     null,
                     null,
                     null,
-                    null
+                    "position"
                 )
             cursor.moveToFirst()
             while (!cursor.isAfterLast) {
@@ -93,6 +93,25 @@ class Interactor {
                 "id = ?",
                 arrayOf("$id")
             )
+        }
+    }
+
+    fun swapItems(fromPosition: Int, toPosition: Int, idFrom: Long, idTo: Long) {
+        CoroutineScope(Dispatchers.IO).launch {
+            (dbHelper.writableDatabase).run {
+                update(
+                    NoteReaderContract.NoteEntry.TABLE_NAME,
+                    ContentValues().apply { put(COLUMN_NOTE_POSITION, toPosition) },
+                    "$COLUMN_NOTE_ID = ?",
+                    arrayOf(idFrom.toString())
+                )
+                update(
+                    NoteReaderContract.NoteEntry.TABLE_NAME,
+                    ContentValues().apply { put(COLUMN_NOTE_POSITION, fromPosition) },
+                    "$COLUMN_NOTE_ID = ?",
+                    arrayOf(idTo.toString())
+                )
+            }
         }
     }
 }

@@ -12,7 +12,10 @@ object MainModel {
     var bufferedItem: Pair<Int, NoteItem>? = null
         private set
 
-    fun createData(item: NoteItem, position: Int = adapter.itemCount) {
+    fun createData(
+        item: NoteItem,
+        position: Int = adapter.itemCount
+    ) {
         adapter.insertItem(position = position, item = item)
         interactor.createDataInBase(item = item, position = position)
     }
@@ -30,6 +33,10 @@ object MainModel {
     }
 
     fun swap(fromPosition: Int, toPosition: Int) {
+        interactor.swapItems(
+            fromPosition, toPosition, idFrom = adapter.getItemId(fromPosition), idTo = adapter
+                .getItemId(toPosition)
+        )
         adapter.swapItems(fromPosition, toPosition)
     }
 }

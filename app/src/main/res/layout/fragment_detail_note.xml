@@ -8,7 +8,7 @@
     android:fitsSystemWindows="true"
     tools:context=".presentation.ui.fragment.detail.DetailNoteFragment">
 
-    <ScrollView
+    <androidx.core.widget.NestedScrollView
         android:id="@+id/scrollView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -50,7 +50,7 @@
                 android:textColor="?attr/mySecondaryTextColor"
                 android:textSize="@dimen/secondaryTextSize" />
         </LinearLayout>
-    </ScrollView>
+    </androidx.core.widget.NestedScrollView>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab"
