@@ -1,9 +1,11 @@
 package com.example.simplenotes.presentation.ui.fragment.create
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import com.example.simplenotes.R
@@ -33,7 +35,11 @@ class CreateNoteFragment : MvpAppCompatFragment(), ICreateNoteFragmentView {
                 titleEditText.text.toString(), descriptionEditText.text.toString()
             )
         }
-
+        descriptionEditText.requestFocus()
+        (activity?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager).showSoftInput(
+            descriptionEditText,
+            InputMethodManager.SHOW_IMPLICIT
+        )
         super.onViewCreated(view, savedInstanceState)
     }
 
@@ -41,5 +47,4 @@ class CreateNoteFragment : MvpAppCompatFragment(), ICreateNoteFragmentView {
         activity?.hideKeyboard()
         navController.popBackStack()
     }
-
 }

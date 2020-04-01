@@ -23,9 +23,10 @@
             android:scaleType="fitCenter"
             android:src="@drawable/ic_undraw_add_notes" />
 
-        <TextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
             android:gravity="center"
             android:text="@string/anything_to_add" />
 
@@ -42,8 +43,10 @@
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:clipToPadding="false"
         android:orientation="vertical"
         android:overScrollMode="never"
+        android:paddingBottom="84dp"
         android:scrollbars="none"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 

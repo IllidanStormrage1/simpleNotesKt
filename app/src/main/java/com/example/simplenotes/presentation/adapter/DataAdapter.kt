@@ -11,7 +11,7 @@ import com.example.simplenotes.presentation.adapter.callback.OnTouchItem
 import kotlinx.android.synthetic.main.note_item.view.*
 import java.util.*
 
-class DataAdapter : RecyclerView.Adapter<DataAdapter.ViewHolder>() {
+class DataAdapter : RecyclerView.Adapter<DataAdapter.NoteViewHolder>() {
 
     private val list: MutableList<NoteItem> = mutableListOf()
     lateinit var callback: OnTouchItem
@@ -50,32 +50,31 @@ class DataAdapter : RecyclerView.Adapter<DataAdapter.ViewHolder>() {
         Collections.swap(list, fromPosition, toPosition)
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder =
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NoteViewHolder =
         with(LayoutInflater.from(parent.context)) {
-            ViewHolder(inflate(R.layout.note_item, parent, false))
+            NoteViewHolder(inflate(R.layout.note_item, parent, false))
         }
 
-
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) =
+    override fun onBindViewHolder(holder: NoteViewHolder, position: Int) =
         holder.bind(list[position])
 
     override fun getItemCount(): Int = list.size
 
     override fun getItemId(position: Int): Long = list[position].id
 
-    override fun onViewAttachedToWindow(holder: ViewHolder) {
+    override fun onViewAttachedToWindow(holder: NoteViewHolder) {
         super.onViewAttachedToWindow(holder)
         holder.itemView.setOnClickListener {
             callback.onItemClicked(list[holder.adapterPosition])
         }
     }
 
-    override fun onViewDetachedFromWindow(holder: ViewHolder) {
+    override fun onViewDetachedFromWindow(holder: NoteViewHolder) {
         super.onViewDetachedFromWindow(holder)
         holder.itemView.setOnClickListener(null)
     }
 
-    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    class NoteViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         fun bind(item: NoteItem) = with(itemView) {
             itemTitle.text = item.title

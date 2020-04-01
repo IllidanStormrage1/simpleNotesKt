@@ -3,7 +3,7 @@ package com.example.simplenotes.domain.entity
 import java.io.Serializable
 
 
-data class NoteItem(
+class NoteItem(
     var title: String?,
     var text: String?,
     val timeCreated: String,

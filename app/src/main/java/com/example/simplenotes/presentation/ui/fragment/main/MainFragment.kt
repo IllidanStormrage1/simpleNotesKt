@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.simplenotes.R
 import com.example.simplenotes.domain.entity.NoteItem
 import com.example.simplenotes.domain.utils.Constants.ITEM
+import com.example.simplenotes.domain.utils.hideKeyboard
 import com.example.simplenotes.presentation.adapter.DataAdapter
 import com.example.simplenotes.presentation.presenter.MainFragmentPresenter
 import com.google.android.material.snackbar.Snackbar
@@ -34,13 +35,17 @@ class MainFragment : MvpAppCompatFragment(),
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        activity?.hideKeyboard()
         fab.setOnClickListener { navController.navigate(R.id.action_mainFragment_to_createNoteFragment) }
         presenter.itemTouchHelper.attachToRecyclerView(recyclerView)
         recyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) =
                 when (newState) {
                     RecyclerView.SCROLL_STATE_IDLE -> fab.show()
-                    else -> fab.hide()
+                    else -> if (recyclerView.canScrollVertically(-1) or recyclerView.canScrollVertically(
+                            1
+                        )
+                    ) fab.hide() else fab.show()
                 }
         })
         super.onViewCreated(view, savedInstanceState)
